@@ -16,12 +16,11 @@ import TableOfContents from '@/components/TableOfContents'
  * @typedef {object} PostProps
  * @prop {object}   post       - Post metadata
  * @prop {object}   blockMap   - Post block data
- * @prop {string}   emailHash  - Author email hash (for Gravatar)
  * @prop {boolean} [fullWidth] - Whether in full-width mode
  */
 export default function Post (props) {
   const BLOG = useConfig()
-  const { post, blockMap, emailHash, fullWidth = false } = props
+  const { post, blockMap, fullWidth = false } = props
   const { dark } = useTheme()
 
   return (
@@ -37,13 +36,6 @@ export default function Post (props) {
           'w-full flex mt-7 items-start text-gray-500 dark:text-gray-400',
           { 'max-w-2xl px-4': !fullWidth }
         )}>
-          <div className="flex mb-4">
-            <a href={BLOG.socialLink || '#'} className="flex">
-
-              <p className="ml-2 md:block">{BLOG.author}</p>
-            </a>
-            <span className="block">&nbsp;/&nbsp;</span>
-          </div>
           <div className="mr-2 mb-4 md:ml-0">
             <FormattedDate date={post.date} />
           </div>
@@ -74,6 +66,5 @@ export default function Post (props) {
 Post.propTypes = {
   post: PropTypes.object.isRequired,
   blockMap: PropTypes.object.isRequired,
-  emailHash: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool
 }
